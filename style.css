@@ -1,0 +1,27 @@
+.chat-container {
+    flex: 1;
+    background-color: rgb(156, 182, 236);
+    height: 95%;
+}
+
+.chat-input {
+    flex: 1;
+    display: flex;
+}
+.chat-input input {
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    padding-left: 15px;
+    outline: none;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+   
+    
+}
+.emoji {
+    width: 20px;
+    height: 35px;
+
+}
