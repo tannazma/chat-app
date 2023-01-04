@@ -1,5 +1,4 @@
 .chat-container {
-    flex: 1;
     background-color: rgb(156, 182, 236);
     height: 95%;
 }
@@ -8,6 +7,7 @@
     flex: 1;
     display: flex;
 }
+
 .chat-input input {
     align-items: center;
     height: 40px;
@@ -17,11 +17,38 @@
     border-style: none;
     border-color: initial;
     border-image: initial;
-   
-    
+
+
 }
+
 .emoji {
     width: 20px;
     height: 35px;
 
+}
+
+.message1 {
+    width: 100%;
+    justify-content: right;
+    display: flex;
+}
+
+.message2 {
+    width: 100%;
+    justify-content: left;
+    display: flex;
+}
+
+.m1 {
+    width: 200px;
+    
+    
+    background-color: aqua;
+}
+
+.m2 {
+    width: 200px;
+    display: flex;
+    justify-content: left;
+    background-color: rgb(255, 0, 132);
 }
