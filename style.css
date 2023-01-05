@@ -1,5 +1,6 @@
 .chat-container {
-    background-color: rgb(156, 182, 236);
+    background: fixed;
+    background-image: url("/wallpaper.jpg");
     height: 95%;
 }
 
@@ -17,8 +18,6 @@
     border-style: none;
     border-color: initial;
     border-image: initial;
-
-
 }
 
 .emoji {
@@ -39,10 +38,18 @@
 
 .m1 {
     width: 200px;
-    background-color: aqua;
+    background-color: rgba(130, 195, 73, 0.408);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 
 .m2 {
     width: 200px;
-    background-color: rgb(255, 0, 132);
+    background-color: rgba(16, 104, 255, 0.38);
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
