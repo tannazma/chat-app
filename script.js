@@ -3,19 +3,26 @@ fetch("http://127.0.0.1:3000/ardjbhb")
 fetch("http://127.0.0.1:3000/tannaz")
 
 messageFromAnyone = (text, align) => {
-    const newMessageDiv = document.createElement("div")
-    newMessageDiv.classList.add("message2")
-    const messageFromYou = document.createElement("div")
-    messageFromYou.textContent = text
-    messageFromYou.classList.add("m2")
+    const messageBox = document.createElement("div")
+    const messageText = document.createElement("div")
 
-    newMessageDiv.prepend(messageFromYou);
+    if (align==="left") {
+        messageBox.classList.add("message2")
+        messageText.classList.add("m2")
+    } else if (align==="right") {
+        messageBox.classList.add("message1")
+        messageText.classList.add("m1")
+    }
+    
+    messageText.textContent = text
+
+    messageBox.prepend(messageText);
     const messageDiv = document.querySelector(".chat-container")
     messageDiv.classList.add("chat-container")
-    document.getElementById("chatContainer").appendChild(newMessageDiv)
+    document.getElementById("chatContainer").appendChild(messageBox)
 }
 
-messageFromAnyone("Ok, let's go on 7 PM.")
-messageFromAnyone("Ok, let's go on 7 PM.")
-messageFromAnyone("Ok, let's go on 7 PM.")
-messageFromAnyone("Ok, let's go on 7 PM.")
+messageFromAnyone("Ok, let's go on 7 PM." , "right")
+messageFromAnyone("See you!" , "left")
+messageFromAnyone("Thanks again" , "right")
+messageFromAnyone("No problem!" , "left")
