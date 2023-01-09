@@ -2,18 +2,18 @@
 fetch("http://127.0.0.1:3000/ardjbhb")
 fetch("http://127.0.0.1:3000/tannaz")
 
-messageFromAnyone = (text, align) => {
+ShowMessage = (text, align) => {
     const messageBox = document.createElement("div")
     const messageText = document.createElement("div")
 
-    if (align==="left") {
+    if (align === "left") {
         messageBox.classList.add("message2")
         messageText.classList.add("m2")
-    } else if (align==="right") {
+    } else if (align === "right") {
         messageBox.classList.add("message1")
         messageText.classList.add("m1")
     }
-    
+
     messageText.textContent = text
 
     messageBox.prepend(messageText);
@@ -22,7 +22,15 @@ messageFromAnyone = (text, align) => {
     document.getElementById("chatContainer").appendChild(messageBox)
 }
 
-messageFromAnyone("Ok, let's go on 7 PM." , "right")
-messageFromAnyone("See you!" , "left")
-messageFromAnyone("Thanks again" , "right")
-messageFromAnyone("No problem!" , "left")
+ShowMessage("Ok, let's go on 7 PM.", "right")
+ShowMessage("See you!", "left")
+ShowMessage("Thanks again", "right")
+ShowMessage("No problem!", "left")
+
+
+
+sendMessage = () => {
+    const inputMessage = document.querySelector("input")
+    ShowMessage(inputMessage.value )
+
+}
