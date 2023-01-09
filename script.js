@@ -29,10 +29,16 @@ ShowMessage("No problem!", "left")
 
 
 
-sendMessage = (text , align) => {
+sendMessage = () => {
     const inputMessage = document.querySelector("input")
-    const messages = document.createElement("div")
-    messages.textContent = text
-    ShowMessage(inputMessage.value , "right")
+    ShowMessage(inputMessage.value, "right");
+    inputMessage.value = ""
 
 }
+
+const inputMessage = document.querySelector("input")
+inputMessage.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        sendMessage()
+    }
+})
