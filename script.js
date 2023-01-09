@@ -29,8 +29,10 @@ ShowMessage("No problem!", "left")
 
 
 
-sendMessage = () => {
+sendMessage = (text , align) => {
     const inputMessage = document.querySelector("input")
-    ShowMessage(inputMessage.value )
+    const messages = document.createElement("div")
+    messages.textContent = text
+    ShowMessage(inputMessage.value , "right")
 
 }
