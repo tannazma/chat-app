@@ -1,7 +1,4 @@
 
-fetch("http://127.0.0.1:3000/ardjbhb")
-fetch("http://127.0.0.1:3000/tannaz")
-
 ShowMessage = (text, align) => {
     const messageBox = document.createElement("div")
     const messageText = document.createElement("div")
@@ -22,16 +19,17 @@ ShowMessage = (text, align) => {
     document.getElementById("chatContainer").appendChild(messageBox)
 }
 
-ShowMessage("Ok, let's go on 7 PM.", "right")
-ShowMessage("See you!", "left")
-ShowMessage("Thanks again", "right")
-ShowMessage("No problem!", "left")
+// ShowMessage("Ok, let's go on 7 PM.", "right")
+// ShowMessage("See you!", "left")
+// ShowMessage("Thanks again", "right")
+// ShowMessage("No problem!", "left")
 
 
 
 sendMessage = () => {
     const inputMessage = document.querySelector("input")
-    ShowMessage(inputMessage.value, "right");
+    // ShowMessage(inputMessage.value, "right");
+    fetch("http://192.168.178.39:3000/send-message", { method: 'POST', body: inputMessage.value })
     inputMessage.value = ""
 
 }
@@ -42,3 +40,10 @@ inputMessage.addEventListener("keypress", function (event) {
         sendMessage()
     }
 })
+
+setInterval(() =>
+    fetch("http://192.168.178.39:3000/get-messages")
+        .then(res => res.text())
+        .then(messages => messages.split(','))
+        .then(messages => { document.getElementById('chatContainer').innerHTML = '';messages.forEach(message => ShowMessage(message, 'right')) }),
+    1000)
