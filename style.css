@@ -1,6 +1,6 @@
 .chat-container {
     background: fixed;
-    background-image: url("/wallpaper.jpg");
+    background-image: url("wallpaper.jpg");
     height: 95%;
 }
 
