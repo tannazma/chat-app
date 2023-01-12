@@ -1,4 +1,4 @@
-
+const username = prompt("what is your name?")
 ShowMessage = (text, align) => {
     const messageBox = document.createElement("div")
     const messageText = document.createElement("div")
@@ -29,7 +29,7 @@ ShowMessage = (text, align) => {
 sendMessage = () => {
     const inputMessage = document.querySelector("input")
     // ShowMessage(inputMessage.value, "right");
-    fetch("http://192.168.178.39:3000/send-message", { method: 'POST', body: inputMessage.value })
+    fetch("http://192.168.178.39:3000/send-message", { method: 'POST', body: JSON.stringify({ message: inputMessage.value, username: username }) })
     inputMessage.value = ""
 
 }
@@ -44,6 +44,9 @@ inputMessage.addEventListener("keypress", function (event) {
 setInterval(() =>
     fetch("http://192.168.178.39:3000/get-messages")
         .then(res => res.text())
-        .then(messages => messages.split(','))
-        .then(messages => { document.getElementById('chatContainer').innerHTML = '';messages.forEach(message => ShowMessage(message, 'right')) }),
+        .then(messages => JSON.parse(messages))
+        .then(messageObjects => {
+            document.getElementById('chatContainer').innerHTML = '';
+            messageObjects.forEach(messageObject => ShowMessage(messageObject.message, 'right'))
+        }),
     1000)

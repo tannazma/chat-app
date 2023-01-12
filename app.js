@@ -19,23 +19,21 @@ const server = http.createServer((req, res) => {
     } else if (req.url === "/tannaz") {
         res.end("You are Tannaz2")
     } else if (req.url === '/send-message' && req.method === 'POST') {
-        let message = ''
+        let body = ''
         req.on('data', function (data) {
-            message += data;
-            if (message.length > 1e6)
+            body += data;
+            if (body.length > 1e6)
                 req.connection.destroy();
         });
 
         req.on('end', function () {
-            console.log('i have body', message);
-            messages.push(message);
-            console.log(messages, '\n', '\n')
+            messages.push(JSON.parse(body));
         });
 
         res.end(''); 
 
     } else if(req.url === '/get-messages' && req.method === 'GET') {
-        res.end(messages.toString())
+        res.end(JSON.stringify(messages))
     }
     else { res.end("Nothing") }
     console.log()
