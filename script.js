@@ -47,6 +47,12 @@ setInterval(() =>
         .then(messages => JSON.parse(messages))
         .then(messageObjects => {
             document.getElementById('chatContainer').innerHTML = '';
-            messageObjects.forEach(messageObject => ShowMessage(messageObject.message, 'right'))
+            messageObjects.forEach(messageObject => {
+                if (username === messageObject.username) {
+                    ShowMessage(messageObject.message, 'right')
+                } else {
+                    ShowMessage(messageObject.message, 'left')
+                }
+            });
         }),
-    1000)
+    1000);
