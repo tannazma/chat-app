@@ -1,7 +1,9 @@
 const username = prompt("what is your name?")
-ShowMessage = (text, align) => {
+ShowMessage = (text, align, user) => {
     const messageBox = document.createElement("div")
     const messageText = document.createElement("div")
+    const messageUser = document.createElement("div")
+
 
     if (align === "left") {
         messageBox.classList.add("message2")
@@ -10,10 +12,12 @@ ShowMessage = (text, align) => {
         messageBox.classList.add("message1")
         messageText.classList.add("m1")
     }
-
+    messageUser.textContent = user
+    messageUser.classList.add("showUsername")
     messageText.textContent = text
+    messageText.prepend(messageUser);
 
-    messageBox.prepend(messageText);
+    messageBox.append(messageText);
     const messageDiv = document.querySelector(".chat-container")
     messageDiv.classList.add("chat-container")
     document.getElementById("chatContainer").appendChild(messageBox)
@@ -49,9 +53,9 @@ setInterval(() =>
             document.getElementById('chatContainer').innerHTML = '';
             messageObjects.forEach(messageObject => {
                 if (username === messageObject.username) {
-                    ShowMessage(messageObject.message, 'right')
+                    ShowMessage(messageObject.message, 'right', messageObject.username)
                 } else {
-                    ShowMessage(messageObject.message, 'left')
+                    ShowMessage(messageObject.message, 'left' , messageObject.username)
                 }
             });
         }),
