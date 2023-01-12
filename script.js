@@ -1,26 +1,27 @@
 const username = prompt("what is your name?")
-ShowMessage = (text, align, user) => {
-    const messageBox = document.createElement("div")
-    const messageText = document.createElement("div")
-    const messageUser = document.createElement("div")
+ShowMessage = (text, messageUsername) => {
+    const messageBoxDiv = document.createElement("div")
+    const messageTextDiv = document.createElement("div")
+    const messageUserDiv = document.createElement("div")
 
+    const align = messageUsername === username ? "right" : "left"
 
     if (align === "left") {
-        messageBox.classList.add("message2")
-        messageText.classList.add("m2")
+        messageBoxDiv.classList.add("message2")
+        messageTextDiv.classList.add("m2")
     } else if (align === "right") {
-        messageBox.classList.add("message1")
-        messageText.classList.add("m1")
+        messageBoxDiv.classList.add("message1")
+        messageTextDiv.classList.add("m1")
     }
-    messageUser.textContent = user
-    messageUser.classList.add("showUsername")
-    messageText.textContent = text
-    messageText.prepend(messageUser);
+    messageUserDiv.textContent = messageUsername
+    messageUserDiv.classList.add("showUsername")
+    messageTextDiv.textContent = text
+    messageTextDiv.prepend(messageUserDiv);
 
-    messageBox.append(messageText);
+    messageBoxDiv.append(messageTextDiv);
     const messageDiv = document.querySelector(".chat-container")
     messageDiv.classList.add("chat-container")
-    document.getElementById("chatContainer").appendChild(messageBox)
+    document.getElementById("chatContainer").appendChild(messageBoxDiv)
 }
 
 // ShowMessage("Ok, let's go on 7 PM.", "right")
@@ -52,11 +53,8 @@ setInterval(() =>
         .then(messageObjects => {
             document.getElementById('chatContainer').innerHTML = '';
             messageObjects.forEach(messageObject => {
-                if (username === messageObject.username) {
-                    ShowMessage(messageObject.message, 'right', messageObject.username)
-                } else {
-                    ShowMessage(messageObject.message, 'left' , messageObject.username)
-                }
+                ShowMessage(messageObject.message, messageObject.username)
             });
         }),
     1000);
+    
