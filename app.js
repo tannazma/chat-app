@@ -4,8 +4,14 @@ const hostname = '192.168.178.39';
 const port = 3000;
 
 const fs = require("fs")
-const data= fs.readFileSync("messages.db")
-let messages = JSON.parse(data);
+let messages = [];
+
+try {
+    const data = fs.readFileSync("messages.db")
+    messages = JSON.parse(data);
+} catch (e) {
+
+} 
 
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -13,7 +19,7 @@ const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Access-Control-Allow-Credentials', true);
 
-    console.log(req.url, req.method)
+    // console.log(req.url, req.method)
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     if (req.url === "/ardeshir") {
@@ -40,8 +46,8 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify(messages))
     }
     else { res.end("Nothing") }
-    console.log()
-    console.log()
+    // console.log()
+    // console.log()
 });
 
 server.listen(port, hostname, () => {
