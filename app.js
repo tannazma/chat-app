@@ -3,7 +3,7 @@ const http = require('http');
 const hostname = '192.168.178.39';
 const port = 3000;
 
-let messages=[];
+let messages = [];
 
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -28,11 +28,13 @@ const server = http.createServer((req, res) => {
 
         req.on('end', function () {
             messages.push(JSON.parse(body));
+            const fs = require("fs")
+            fs.writeFileSync("messages.db", JSON.stringify(messages));
         });
 
-        res.end(''); 
+        res.end('');
 
-    } else if(req.url === '/get-messages' && req.method === 'GET') {
+    } else if (req.url === '/get-messages' && req.method === 'GET') {
         res.end(JSON.stringify(messages))
     }
     else { res.end("Nothing") }
