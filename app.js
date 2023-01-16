@@ -3,7 +3,9 @@ const http = require('http');
 const hostname = '192.168.178.39';
 const port = 3000;
 
-let messages = [];
+const fs = require("fs")
+const data= fs.readFileSync("messages.db")
+let messages = JSON.parse(data);
 
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
