@@ -11,7 +11,7 @@ try {
     messages = JSON.parse(data);
 } catch (e) {
 
-} 
+}
 
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -22,16 +22,16 @@ const server = http.createServer((req, res) => {
     // console.log(req.url, req.method)
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
-    if (req.url === "/ardeshir") {
-        res.end("You are Ardeshir")
-    } else if (req.url === "/tannaz") {
-        res.end("You are Tannaz2")
-    } else if (req.url === '/send-message' && req.method === 'POST') {
-        let body = ''
+    // if (req.url === "/ardeshir") {
+    //     res.end("You are Ardeshir")
+    // } else if (req.url === "/tannaz") {
+    //     res.end("You are Tannaz2")
+    // } else
+    if (req.url === '/send-message' && req.method === 'POST') {
+        let body = '';
+
         req.on('data', function (data) {
             body += data;
-            if (body.length > 1e6)
-                req.connection.destroy();
         });
 
         req.on('end', function () {
