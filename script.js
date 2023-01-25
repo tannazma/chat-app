@@ -4,19 +4,27 @@ ShowMessage = (text, messageUsername) => {
     const messageTextDiv = document.createElement("div")
     const messageUserDiv = document.createElement("div")
 
+    const currentDay = new Date();
+    const dateString = currentDay.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+    const dateElement = document.createElement('div');
+    dateElement.textContent = dateString;
+
     const align = messageUsername === username ? "right" : "left"
 
     if (align === "left") {
         messageBoxDiv.classList.add("message2")
         messageTextDiv.classList.add("m2")
+        dateElement.classList.add('message2')
     } else if (align === "right") {
         messageBoxDiv.classList.add("message1")
         messageTextDiv.classList.add("m1")
+        dateElement.classList.add('message2')
     }
     messageUserDiv.textContent = messageUsername
     messageUserDiv.classList.add("showUsername")
     messageTextDiv.textContent = text
     messageTextDiv.prepend(messageUserDiv);
+    messageUserDiv.append(dateElement);
 
     messageBoxDiv.append(messageTextDiv);
     const messageDiv = document.querySelector(".chat-container")
@@ -57,4 +65,3 @@ setInterval(() =>
             });
         }),
     1000);
-    
